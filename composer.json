@@ -16,6 +16,11 @@
         "magento/module-search": ">=100.2",
         "magento/module-cms": ">=102.0",
         "magento/module-store": ">=100.2",
+        "magento/module-eav": "^102.0.0",
+        "magento/module-catalog-search": "^101.0.0",
+        "magento/module-backend": "^101.0.0",
+        "magento/module-catalog-inventory": "^100.3.0",
+        "magento/module-customer": "^102.0.0",
         "swissup/module-core": "^1.10.5"
     },
     "autoload": {
