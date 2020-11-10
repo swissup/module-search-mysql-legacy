@@ -1,0 +1,46 @@
+{
+    "name": "swissup/module-search-mysql-legacy",
+    "description": "Legacy mysql search for magento 2.4",
+    "keywords": [
+        "mysql",
+        "search",
+        "legacy"
+    ],
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": "OSL-3.0",
+    "require": {
+        "magento/framework": ">=101.0",
+        "magento/module-checkout": ">=100.2",
+        "magento/module-catalog": ">=102.0",
+        "magento/module-search": ">=100.2",
+        "magento/module-cms": ">=102.0",
+        "magento/module-store": ">=100.2",
+        "swissup/module-core": "^1.10.5"
+    },
+    "autoload": {
+        "files": [ "registration.php" ],
+        "psr-4": {
+            "Swissup\\SearchMysqlLegacy\\": ""
+        }
+    },
+    "extra": {
+        "swissup": {
+            "links": {
+                "marketplace"   : "https://marketplace.magento.com/swissup-search-mysql-legacy.html",
+                "store"         : "https://swissuplabs.com/",
+                "docs"          : "http://docs.swissuplabs.com/m2/extensions/search-mysql-legacy/",
+                "changelog"     : "http://docs.swissuplabs.com/m2/extensions/search-mysql-legacy/changelog/"
+            }
+        },
+        "marketplace": {
+            "gallery": [
+                "https://docs.swissuplabs.com/images/marketplace/module-search-mysql-legacy.png"
+            ],
+            "links": {
+                "docs": "https://docs.swissuplabs.com/m2/extensions/search-mysql-legacy/",
+                "changelog": "https://docs.swissuplabs.com/m2/extensions/search-mysql-legacy/changelog/"
+            }
+        }
+    }
+}
