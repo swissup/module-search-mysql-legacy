@@ -1,5 +1,3 @@
-# module-search-mysql-legacy
-
 # Legacy Mysql Search 
 
 <sup>It's a magento2-module for the [metapackage](https://github.com/swissup/search-mysql-legacy/).</sup>
