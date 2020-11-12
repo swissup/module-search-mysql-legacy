@@ -26,3 +26,25 @@ bin/magento module:enable Swissup_SearchMysqlLegacy Swissup_Core
 bin/magento setup:upgrade
 bin/magento setup:di:compile
 ```
+
+### F.A.Q
+
+#### How to install Magento 2.4.0 without Elasticsearch require during installation?
+
+Disable all elastic search module with below command before running the setup:install.
+```bash
+php bin/magento module:disable Magento_Elasticsearch Magento_Elasticsearch6 Magento_Elasticsearch7
+```
+### How can I check current search engine?
+
+You can check your current search engine using:
+```
+bin/magento config:show catalog/search/engine
+```
+
+### How can I change search engine?
+
+You can change your current search engine using:
+```
+bin/magento config:set catalog/search/engine 'lmysql'
+```
