@@ -35,14 +35,14 @@ Disable all elastic search module with below command before running the setup:in
 ```bash
 php bin/magento module:disable Magento_Elasticsearch Magento_Elasticsearch6 Magento_Elasticsearch7
 ```
-### How can I check current search engine?
+#### How can I check current search engine?
 
 You can check your current search engine using:
 ```
 bin/magento config:show catalog/search/engine
 ```
 
-### How can I change search engine?
+#### How can I change search engine?
 
 You can change your current search engine using:
 ```
