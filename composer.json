@@ -31,7 +31,7 @@
     },
     "extra": {
         "swissup": {
-            "links": {
+            "links.off": {
                 "marketplace"   : "https://marketplace.magento.com/swissup-search-mysql-legacy.html",
                 "store"         : "https://swissuplabs.com/",
                 "docs"          : "http://docs.swissuplabs.com/m2/extensions/search-mysql-legacy/",
@@ -39,10 +39,10 @@
             }
         },
         "marketplace": {
-            "gallery": [
+            "gallery.off": [
                 "https://docs.swissuplabs.com/images/marketplace/module-search-mysql-legacy.png"
             ],
-            "links": {
+            "links.off": {
                 "docs": "https://docs.swissuplabs.com/m2/extensions/search-mysql-legacy/",
                 "changelog": "https://docs.swissuplabs.com/m2/extensions/search-mysql-legacy/changelog/"
             }
