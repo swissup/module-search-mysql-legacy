@@ -25,6 +25,7 @@ composer require swissup/module-search-mysql-legacy --prefer-source --ignore-pla
 bin/magento module:enable Swissup_SearchMysqlLegacy Swissup_Core
 bin/magento setup:upgrade
 bin/magento setup:di:compile
+bin/magento indexer:index catalogsearch_fulltext
 ```
 
 ### F.A.Q
