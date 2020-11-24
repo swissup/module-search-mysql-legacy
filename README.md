@@ -31,9 +31,21 @@ bin/magento setup:di:compile
 
 #### How to install Magento 2.4.0 without Elasticsearch require during installation?
 
-Disable all elastic search module with below command before running the setup:install.
+Use --disable-modules option
+
+```
+bin/magento setup:install -h
+...
+--disable-modules[=DISABLE-MODULES] List of comma-separated module names. That must be avoided during installation.
+```
+
+```
+php bin/magento setup:install --disable-modules=Magento_InventoryElasticsearch,Magento_Elasticsearch7,Magento_Elasticsearch6,Magento_Elasticsearch
+```
+
+Or disable all elastic search module with below command after running the setup:install.
 ```bash
-php bin/magento module:disable Magento_Elasticsearch Magento_Elasticsearch6 Magento_Elasticsearch7
+php bin/magento module:disable Magento_Elasticsearch Magento_Elasticsearch6 Magento_Elasticsearch7 Magento_InventoryElasticsearch
 ```
 #### How can I check current search engine?
 
