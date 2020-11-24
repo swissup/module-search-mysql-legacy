@@ -37,7 +37,7 @@ Use --disable-modules option
 ```
 bin/magento setup:install -h
 ...
---disable-modules[=DISABLE-MODULES] List of comma-separated module names. That must be avoided during installation.
+--disable-modules[=DISABLE-MODULES] List of comma-separated module names, that must be avoided during installation.
 ```
 
 ```
