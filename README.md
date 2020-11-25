@@ -25,6 +25,7 @@ composer require swissup/module-search-mysql-legacy --prefer-source --ignore-pla
 bin/magento module:enable Swissup_SearchMysqlLegacy Swissup_Core
 bin/magento setup:upgrade
 bin/magento setup:di:compile
+bin/magento indexer:reindex catalogsearch_fulltext
 ```
 
 ### F.A.Q
@@ -36,7 +37,7 @@ Use --disable-modules option
 ```
 bin/magento setup:install -h
 ...
---disable-modules[=DISABLE-MODULES] List of comma-separated module names. That must be avoided during installation.
+--disable-modules[=DISABLE-MODULES] List of comma-separated module names, that must be avoided during installation.
 ```
 
 ```
