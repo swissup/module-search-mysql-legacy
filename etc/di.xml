@@ -273,4 +273,20 @@
             </argument>
         </arguments>
     </type>
+
+    <type name="Swissup\SearchMysqlLegacy\Model\Search\FilterMapper\ExclusionStrategy">
+        <arguments>
+            <argument name="priceTableResolver" xsi:type="object">
+                Magento\Catalog\Model\Indexer\Product\Price\PriceTableResolver
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Swissup\SearchMysqlLegacy\Model\Adapter\Mysql\Dynamic\DataProvider">
+        <arguments>
+            <argument name="priceTableResolver" xsi:type="object">
+                Magento\Catalog\Model\Indexer\Product\Price\PriceTableResolver
+            </argument>
+        </arguments>
+    </type>
 </config>
