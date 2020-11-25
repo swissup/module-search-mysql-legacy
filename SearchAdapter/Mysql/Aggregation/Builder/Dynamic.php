@@ -70,11 +70,13 @@ class Dynamic implements BucketInterface
     {
         $resultData = [];
         foreach ($data as $value) {
-            $from = is_numeric($value['from']) ? $value['from'] : '*';
-            $to = is_numeric($value['to']) ? $value['to'] : '*';
-            unset($value['from'], $value['to']);
+            // https://github.com/magento/magento2/commit/256806aabbb802a545393c07bc8b8135dc7126e9
+            // $from = is_numeric($value['from']) ? $value['from'] : '*';
+            // $to = is_numeric($value['to']) ? $value['to'] : '*';
+            // unset($value['from'], $value['to']);
 
-            $rangeName = "{$from}_{$to}";
+            // $rangeName = "{$from}_{$to}";
+            $rangeName = "{$value['from']}_{$value['to']}";
             $resultData[$rangeName] = array_merge(['value' => $rangeName], $value);
         }
 
