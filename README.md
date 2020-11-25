@@ -44,9 +44,9 @@ bin/magento setup:install -h
 php bin/magento setup:install --disable-modules=Magento_InventoryElasticsearch,Magento_Elasticsearch7,Magento_Elasticsearch6,Magento_Elasticsearch
 ```
 
-Or disable all elastic search module with below command after running the setup:install.
+After installing enable all elastic search module with below command.
 ```bash
-php bin/magento module:disable Magento_Elasticsearch Magento_Elasticsearch6 Magento_Elasticsearch7 Magento_InventoryElasticsearch
+php bin/magento module:enable Magento_Elasticsearch Magento_Elasticsearch6 Magento_Elasticsearch7 Magento_InventoryElasticsearch
 ```
 #### How can I check current search engine?
 
