@@ -210,7 +210,8 @@ class DataProvider implements DataProviderInterface
 
             foreach ($dbRanges as $index => $count) {
                 $fromPrice = $index == 1 ? '' : ($index - 1) * $range;
-                $toPrice = $index == $lastIndex ? '' : $index * $range;
+                // $toPrice = $index == $lastIndex ? '' : $index * $range;
+                $toPrice = $index * $range;
 
                 $data[] = [
                     'from' => $fromPrice,
