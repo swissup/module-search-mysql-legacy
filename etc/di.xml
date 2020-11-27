@@ -293,4 +293,9 @@
     <type name="Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection">
        <plugin name="load_entities_legacy_mysql" type="Swissup\SearchMysqlLegacy\Plugin\CatalogSearch\Model\ResourceModel\Fulltext\Collection" />
     </type>
+
+    <type name="Magento\CatalogSearch\Model\Adapter\Aggregation\Checker\Query\CatalogView">
+       <plugin name="is_applicable" type="Swissup\SearchMysqlLegacy\Plugin\CatalogSearch\Model\Adapter\Aggregation\Checker\Query\CatalogView" />
+    </type>
+
 </config>
