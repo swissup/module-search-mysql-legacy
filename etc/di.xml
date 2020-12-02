@@ -298,4 +298,32 @@
        <plugin name="is_applicable" type="Swissup\SearchMysqlLegacy\Plugin\CatalogSearch\Model\Adapter\Aggregation\Checker\Query\CatalogView" />
     </type>
 
+    <type name="Magento\Search\Model\SearchEngine\Validator">
+        <arguments>
+<!--            <argument name="excludedEngineList" xsi:type="array">-->
+<!--                <item name="lmysql" xsi:type="string">Legacy MySQL (Deprecated)</item>-->
+<!--            </argument>-->
+            <argument name="engineValidators" xsi:type="array">
+                <item name="lmysql" xsi:type="object">Swissup\SearchMysqlLegacy\Setup\Validator</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Swissup\SearchMysqlLegacy\Model\Client\LMysqlFactory" type="Magento\AdvancedSearch\Model\Client\ClientFactory">
+        <arguments>
+            <argument name="clientClass" xsi:type="string">Swissup\SearchMysqlLegacy\Model\Client\LMysql</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\AdvancedSearch\Model\Client\ClientResolver">
+        <arguments>
+            <argument name="clientFactories" xsi:type="array">
+                <item name="lmysql" xsi:type="string">Swissup\SearchMysqlLegacy\Model\Client\LMysqlFactory</item>
+            </argument>
+            <argument name="clientOptions" xsi:type="array">
+                <item name="lmysql" xsi:type="string">\Swissup\SearchMysqlLegacy\Model\Client\Config</item>
+            </argument>
+        </arguments>
+    </type>
+
 </config>
