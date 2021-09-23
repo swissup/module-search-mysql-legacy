@@ -321,7 +321,15 @@
                 <item name="lmysql" xsi:type="string">Swissup\SearchMysqlLegacy\Model\Client\LMysqlFactory</item>
             </argument>
             <argument name="clientOptions" xsi:type="array">
-                <item name="lmysql" xsi:type="string">\Swissup\SearchMysqlLegacy\Model\Client\Config</item>
+                <item name="lmysql" xsi:type="string">Swissup\SearchMysqlLegacy\Model\Client\Config</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\CatalogSearch\Model\Advanced\ProductCollectionPrepareStrategyProvider">
+        <arguments>
+            <argument name="strategies" xsi:type="array">
+                <item name="lmysql" xsi:type="object">Swissup\SearchMysqlLegacy\Model\Advanced\ProductCollectionPrepareStrategy</item>
             </argument>
         </arguments>
     </type>
