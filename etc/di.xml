@@ -137,6 +137,7 @@
             <!-- @deprecated parameter customerSession has been deprecated and not in used now -->
             <argument name="customerSession" xsi:type="null"/>
         </arguments>
+        <plugin name="categoryIdAggregation" type="Swissup\SearchMysqlLegacy\Model\Adapter\Mysql\Plugin\Aggregation\Category\DataProvider" />
     </type>
 
     <type name="Swissup\SearchMysqlLegacy\SearchAdapter\Mysql\Mapper">

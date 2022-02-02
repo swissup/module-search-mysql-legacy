@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<engines xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Search/etc/search_engine.xsd">
+    <engine name="lmysql">
+        <feature name="synonyms" support="true" />
+    </engine>
+</engines>
