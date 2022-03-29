@@ -119,8 +119,19 @@ class VisibilityFilter
     {
         $mainTableAlias = $this->extractTableAliasFromSelect($select);
 
+        /** FIX for magento search_tmp insert query hanging */
+        $optimizedVisibilityQuery = new \Zend_Db_Expr('(SELECT `entity_id`, `store_id`, `attribute_id`, `value` FROM '
+            . $this->resourceConnection->getTableName('catalog_product_index_eav')
+            . sprintf(
+                ' WHERE `attribute_id`=%s AND `store_id`=%s'
+                . ' GROUP BY CONCAT(`entity_id`," ",`attribute_id`," ",`store_id`," ",`value`) )',
+                $this->getVisibilityAttributeId(),
+                $this->storeManager->getStore()->getId()
+            )
+        );
+        
         $select->joinInner(
-            ['visibility_filter' => $this->resourceConnection->getTableName('catalog_product_index_eav')],
+            ['visibility_filter' => $optimizedVisibilityQuery],
             $this->conditionManager->combineQueries(
                 [
                     sprintf('%s.entity_id = visibility_filter.entity_id', $mainTableAlias),
