@@ -98,8 +98,19 @@ class CustomAttributeFilter
 
             $attributes[] = $attributeId;
 
+            /** FIX for magento search_tmp insert query hanging */
+            $optimizedSelectQuery = new \Zend_Db_Expr('(SELECT `entity_id`, `store_id`, `attribute_id`, `value` FROM '
+                . $this->resourceConnection->getTableName('catalog_product_index_eav')
+                . sprintf(
+                    ' WHERE `attribute_id`=%s AND `store_id`=%s'
+                    . ' GROUP BY CONCAT(`entity_id`," ",`attribute_id`," ",`store_id`," ",`value`) )',
+                    $attributeId,
+                    $this->storeManager->getStore()->getId()
+                )
+            );
+            
             $select->joinInner(
-                [$filterJoinAlias => $this->resourceConnection->getTableName('catalog_product_index_eav')],
+                [$filterJoinAlias => $optimizedSelectQuery],
                 $this->conditionManager->combineQueries(
                     $this->getJoinConditions($attributeId, $mainTableAlias, $filterJoinAlias),
                     Select::SQL_AND
