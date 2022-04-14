@@ -206,7 +206,7 @@
         </arguments>
     </type>
 
-    <type name="Swissup\SearchMysqlLegacy\SearchAdapter\Mysql\Query\Builder\Match">
+    <type name="Swissup\SearchMysqlLegacy\SearchAdapter\Mysql\Query\Builder\MatchBuilder">
         <arguments>
             <argument name="preprocessors" xsi:type="array">
                 <item name="synonymsPreprocessor" xsi:type="object">Magento\Search\Adapter\Query\Preprocessor\Synonyms</item>

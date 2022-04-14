@@ -10,7 +10,7 @@ use Magento\Framework\DB\Ddl\Table;
 use Magento\Framework\DB\Select;
 
 use Swissup\SearchMysqlLegacy\SearchAdapter\Mysql\Filter\Builder;
-use Swissup\SearchMysqlLegacy\SearchAdapter\Mysql\Query\Builder\Match;
+use Swissup\SearchMysqlLegacy\SearchAdapter\Mysql\Query\Builder\MatchBuilder;
 use Swissup\SearchMysqlLegacy\SearchAdapter\Mysql\Query\MatchContainer;
 use Swissup\SearchMysqlLegacy\SearchAdapter\Mysql\Query\QueryContainer;
 use Swissup\SearchMysqlLegacy\SearchAdapter\Mysql\Query\QueryContainerFactory;
@@ -69,7 +69,7 @@ class Mapper
     private $queryContainerFactory;
 
     /**
-     * @var Query\Builder\Match
+     * @var Query\Builder\MatchBuilder
      */
     private $matchBuilder;
 
@@ -95,7 +95,7 @@ class Mapper
      * @param ResourceConnection $resource
      * @param EntityMetadata $entityMetadata
      * @param QueryContainerFactory $queryContainerFactory
-     * @param Query\Builder\Match $matchBuilder
+     * @param Query\Builder\MatchBuilder $matchBuilder
      * @param TemporaryStorageFactory $temporaryStorageFactory
      * @param IndexBuilderInterface[] $indexProviders
      * @param string $relevanceCalculationMethod
@@ -109,7 +109,7 @@ class Mapper
         ResourceConnection $resource,
         EntityMetadata $entityMetadata,
         QueryContainerFactory $queryContainerFactory,
-        Match $matchBuilder,
+        MatchBuilder $matchBuilder,
         TemporaryStorageFactory $temporaryStorageFactory,
         array $indexProviders,
         // array $indexProviders = [],

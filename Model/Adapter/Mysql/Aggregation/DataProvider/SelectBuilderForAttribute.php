@@ -7,8 +7,7 @@ declare(strict_types=1);
 
 namespace Swissup\SearchMysqlLegacy\Model\Adapter\Mysql\Aggregation\DataProvider;
 
-use Swissup\SearchMysqlLegacy\Model\Adapter\Mysql\Aggregation\DataProvider\SelectBuilderForAttribute\
-ApplyStockConditionToSelect;
+use Swissup\SearchMysqlLegacy\Model\Adapter\Mysql\Aggregation\DataProvider\SelectBuilderForAttribute\ApplyStockConditionToSelect;
 use Magento\Customer\Model\Session;
 use Magento\Eav\Model\Entity\Attribute\AbstractAttribute;
 use Magento\Framework\App\Config\ScopeConfigInterface;
