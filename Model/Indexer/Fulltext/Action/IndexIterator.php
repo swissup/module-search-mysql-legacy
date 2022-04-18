@@ -143,7 +143,7 @@ class IndexIterator implements \Iterator
      * @deprecated 100.1.6 Since class is deprecated
      * @since 100.0.3
      */
-    public function current()
+    public function current(): mixed
     {
         return $this->current;
     }
@@ -154,7 +154,7 @@ class IndexIterator implements \Iterator
      * @deprecated 100.1.6 Since class is deprecated
      * @since 100.0.3
      */
-    public function next()
+    public function next(): void
     {
         \next($this->products);
         if (\key($this->products) === null) {
@@ -253,7 +253,7 @@ class IndexIterator implements \Iterator
      * @deprecated 100.1.6 Since class is deprecated
      * @since 100.0.3
      */
-    public function key()
+    public function key(): mixed
     {
         return $this->key;
     }
@@ -264,7 +264,7 @@ class IndexIterator implements \Iterator
      * @deprecated 100.1.6 Since class is deprecated
      * @since 100.0.3
      */
-    public function valid()
+    public function valid(): bool
     {
         return $this->isValid;
     }
@@ -275,7 +275,7 @@ class IndexIterator implements \Iterator
      * @deprecated 100.1.6 Since class is deprecated
      * @since 100.0.3
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->lastProductId = 0;
         $this->key = null;
