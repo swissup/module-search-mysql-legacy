@@ -143,7 +143,8 @@ class IndexIterator implements \Iterator
      * @deprecated 100.1.6 Since class is deprecated
      * @since 100.0.3
      */
-    public function current(): mixed
+    #[\ReturnTypeWillChange]
+    public function current()
     {
         return $this->current;
     }
@@ -253,7 +254,8 @@ class IndexIterator implements \Iterator
      * @deprecated 100.1.6 Since class is deprecated
      * @since 100.0.3
      */
-    public function key(): mixed
+    #[\ReturnTypeWillChange]
+    public function key()
     {
         return $this->key;
     }
