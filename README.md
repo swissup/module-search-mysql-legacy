@@ -1,6 +1,17 @@
 # Legacy Mysql Search 
-
 <sup>It's a magento2-module for the [metapackage](https://github.com/swissup/search-mysql-legacy/).</sup>
+
+The news sometimes isn't good, but there is always a way out. Yes, [MySQL is no longer supported](https://devdocs.magento.com/guides/v2.4/release-notes/backward-incompatible-changes/#230---24) for search since Magento 2.4. And you must install Elasticsearch 7.6.x before upgrading to the latest Magento version.
+
+Elastic search is a great solution. Even so, a lot of our customers still prefer using hostings that don’t have it. Let us help you to install Magento 2.4 without Elastic search enabled.
+
+### We released the Legacy MySQL Search module for Magento 2
+We integrated Magento 2.3.5 MySQL Search mechanism with Magento 2.4. The Legacy MySQL Search module enables a new value in the Search Engine drop-down of Catalog Search config settings.
+
+So you don’t need things to get complicated. You have simply to choose the "Legacy MySQL (Deprecated) value" in drop-down.
+
+![the_new_legacy_mysql_search_module_for_magento_2-1](https://user-images.githubusercontent.com/412612/176845092-e72c72dd-6f96-43f9-8bb7-04238802eb3e.png)
+
 
 ### [Installation](https://docs.swissuplabs.com/m2/extensions/search-mysql-legacy/installation/)
 
