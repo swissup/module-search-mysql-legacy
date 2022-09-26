@@ -335,4 +335,12 @@
         </arguments>
     </type>
 
+    <type name="Swissup\SearchMysqlLegacy\Setup\Patch\Data\MySQLCatalogSearchTableCreation">
+        <arguments>
+            <argument name="dimensionProvider" xsi:type="object" shared="false">
+                Magento\Store\Model\StoreDimensionProvider
+            </argument>
+        </arguments>
+    </type>
+
 </config>
