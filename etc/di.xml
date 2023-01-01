@@ -1,12 +1,5 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <virtualType name="SwissupAjaxsearchModelLayerSearchItemCollectionProvider" type="Swissup\Ajaxsearch\Model\Layer\Search\ItemCollectionProvider">
-        <arguments>
-            <argument name="factories" xsi:type="array">
-                <item name="lmysql" xsi:type="object">Swissup\Ajaxsearch\Model\ResourceModel\Fulltext\SearchCollectionFactory</item>
-            </argument>
-        </arguments>
-    </virtualType>
 
     <type name="Magento\Search\Model\Adminhtml\System\Config\Source\Engine">
         <arguments>
@@ -35,11 +28,8 @@
     </type>
 
      <!-- app/code/Magento/CatalogSearch/etc/di.xml -->
-
-<!--    <preference for="Swissup\SearchMysqlLegacy\SearchAdapter\Mysql\Field\ResolverInterface" type="Swissup\SearchMysqlLegacy\SearchAdapter\Mysql\Field\Resolver" />-->
     <preference for="Swissup\SearchMysqlLegacy\SearchAdapter\Mysql\Field\ResolverInterface" type="Swissup\SearchMysqlLegacy\Model\Adapter\Mysql\Field\Resolver" />
     <preference for="Swissup\SearchMysqlLegacy\SearchAdapter\Mysql\Aggregation\DataProviderInterface" type="Swissup\SearchMysqlLegacy\Model\Adapter\Mysql\Aggregation\DataProvider"/>
-<!--    <preference for="Swissup\SearchMysqlLegacy\SearchAdapter\Mysql\Filter\PreprocessorInterface" type="Swissup\SearchMysqlLegacy\SearchAdapter\Mysql\Filter\Preprocessor" />-->
     <preference for="Swissup\SearchMysqlLegacy\SearchAdapter\Mysql\Filter\PreprocessorInterface" type="Swissup\SearchMysqlLegacy\Model\Adapter\Mysql\Filter\Preprocessor" />
     <preference for="Magento\Framework\Search\Dynamic\DataProviderInterface" type="Swissup\SearchMysqlLegacy\Model\Adapter\Mysql\Dynamic\DataProvider" />
 
@@ -70,6 +60,7 @@
     <type name="Swissup\SearchMysqlLegacy\Model\Indexer\IndexerHandler">
         <arguments>
             <argument name="indexStructure" xsi:type="object">\Magento\CatalogSearch\Model\Indexer\IndexStructureProxy</argument>
+            <argument name="indexScopeResolver" xsi:type="object">\Magento\CatalogSearch\Model\Indexer\Scope\ScopeProxy</argument>
         </arguments>
     </type>
 
@@ -155,12 +146,6 @@
         </arguments>
     </type>
 
-    <type name="Swissup\SearchMysqlLegacy\Model\Indexer\IndexerHandler">
-        <arguments>
-            <argument name="indexScopeResolver" xsi:type="object">\Magento\CatalogSearch\Model\Indexer\Scope\ScopeProxy</argument>
-        </arguments>
-    </type>
-
     <type name="Swissup\SearchMysqlLegacy\Model\Indexer\Scope\IndexSwitcher">
         <arguments>
             <argument name="indexScopeResolver" xsi:type="object">\Magento\CatalogSearch\Model\Indexer\Scope\ScopeProxy</argument>
@@ -191,10 +176,6 @@
             </argument>
         </arguments>
     </type>
-
-<!--    <type name="Magento\Config\Model\Config">-->
-<!--        <plugin name="config_enable_eav_indexer" type="Magento\CatalogSearch\Plugin\EnableEavIndexer" />-->
-<!--    </type>-->
 
      <!-- app/code/Magento/Search/etc/di.xml -->
 
@@ -229,8 +210,6 @@
 
     <preference for="Swissup\SearchMysqlLegacy\Model\Search\FilterMapper\FilterStrategyInterface" type="Swissup\SearchMysqlLegacy\Model\Search\FilterMapper\FilterContext"/>
 
-<!--    <type name="Swissup\SearchMysqlLegacy\Model\Search\ItemCollectionProvider">-->
-
     <virtualType name="elasticsearchLayerCategoryItemCollectionProvider" type="Magento\Elasticsearch\Model\Layer\Category\ItemCollectionProvider">
         <arguments>
             <argument name="factories" xsi:type="array">
@@ -246,15 +225,6 @@
             </argument>
         </arguments>
     </virtualType>
-
-    <type name="Swissup\SearchMysqlLegacy\SearchAdapter\Mysql\Mapper">
-        <arguments>
-            <argument name="indexProviders" xsi:type="array">
-                <item name="catalogsearch_fulltext" xsi:type="object">Swissup\SearchMysqlLegacy\Model\Search\IndexBuilder</item>
-            </argument>
-            <argument name="entityMetadata" xsi:type="object">Swissup\SearchMysqlLegacy\Search\ProductEntityMetadata</argument>
-        </arguments>
-    </type>
 
     <type name="Swissup\SearchMysqlLegacy\Model\Search\FilterMapper\TermDropdownStrategy">
         <arguments>
@@ -283,14 +253,6 @@
         </arguments>
     </type>
 
-    <type name="Swissup\SearchMysqlLegacy\Model\Adapter\Mysql\Dynamic\DataProvider">
-        <arguments>
-            <argument name="priceTableResolver" xsi:type="object">
-                Magento\Catalog\Model\Indexer\Product\Price\PriceTableResolver
-            </argument>
-        </arguments>
-    </type>
-
     <type name="Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection">
        <plugin name="load_entities_legacy_mysql" type="Swissup\SearchMysqlLegacy\Plugin\CatalogSearch\Model\ResourceModel\Fulltext\Collection" />
     </type>
@@ -301,9 +263,6 @@
 
     <type name="Magento\Search\Model\SearchEngine\Validator">
         <arguments>
-<!--            <argument name="excludedEngineList" xsi:type="array">-->
-<!--                <item name="lmysql" xsi:type="string">Legacy MySQL (Deprecated)</item>-->
-<!--            </argument>-->
             <argument name="engineValidators" xsi:type="array">
                 <item name="lmysql" xsi:type="object">Swissup\SearchMysqlLegacy\Setup\Validator</item>
             </argument>
@@ -344,3 +303,4 @@
     </type>
 
 </config>
+
