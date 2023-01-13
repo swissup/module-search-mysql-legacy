@@ -7,7 +7,7 @@
         "legacy"
     ],
     "type": "magento2-module",
-    "version": "1.1.4",
+    "version": "1.1.5",
     "license": "OSL-3.0",
     "require": {
         "magento/framework": ">=102.0",
@@ -21,7 +21,7 @@
         "magento/module-backend": ">=101.0",        
         "magento/module-catalog-inventory": ">=100.3",        
         "magento/module-customer": ">=102.0",
-        "swissup/module-core": "^1.12.11"
+        "swissup/module-core": "^1.12.12"
     },
     "autoload": {
         "files": [ "registration.php" ],
