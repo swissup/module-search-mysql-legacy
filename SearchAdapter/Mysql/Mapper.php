@@ -18,7 +18,6 @@ use Swissup\SearchMysqlLegacy\SearchAdapter\Mysql\Query\QueryContainerFactory;
 use Magento\Framework\Search\EntityMetadata;
 use Magento\Framework\Search\Request\Query\BoolExpression as BoolQuery;
 use Magento\Framework\Search\Request\Query\Filter as FilterQuery;
-use Magento\Framework\Search\Request\Query\Match as MatchQuery;
 use Magento\Framework\Search\Request\QueryInterface as RequestQueryInterface;
 use Magento\Framework\Search\RequestInterface;
 
@@ -220,7 +219,7 @@ class Mapper
     ) {
         switch ($query->getType()) {
             case RequestQueryInterface::TYPE_MATCH:
-                /** @var MatchQuery $query */
+                /** @var \Magento\Framework\Search\Request\Query\MatchQuery $query */
                 $select = $queryContainer->addMatchQuery(
                     $select,
                     $query,
