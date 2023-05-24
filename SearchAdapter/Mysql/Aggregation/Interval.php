@@ -55,10 +55,10 @@ class Interval implements IntervalInterface
         $select = clone $this->select;
         $value = $this->getValueFiled();
         if ($lower !== null) {
-            $select->where("${value} >= ?", $lower - self::DELTA);
+            $select->where("{$value} >= ?", $lower - self::DELTA);
         }
         if ($upper !== null) {
-            $select->where("${value} < ?", $upper - self::DELTA);
+            $select->where("{$value} < ?", $upper - self::DELTA);
         }
         $select->order("value ASC")
             ->limit($limit, $offset);
@@ -78,9 +78,9 @@ class Interval implements IntervalInterface
         $select = clone $this->select;
         $value = $this->getValueFiled();
         $select->columns(['count' => 'COUNT(*)'])
-            ->where("${value} <  ?", $data - self::DELTA);
+            ->where("{$value} <  ?", $data - self::DELTA);
         if ($lower !== null) {
-            $select->where("${value} >= ?", $lower - self::DELTA);
+            $select->where("{$value} >= ?", $lower - self::DELTA);
         }
         $offset = $this->select->getConnection()
             ->fetchRow($select)['count'];
@@ -100,10 +100,10 @@ class Interval implements IntervalInterface
         $select = clone $this->select;
         $value = $this->getValueFiled();
         $select->columns(['count' => 'COUNT(*)'])
-            ->where("${value} > ?", $data + self::DELTA);
+            ->where("{$value} > ?", $data + self::DELTA);
 
         if ($upper !== null) {
-            $select->where("${value} < ? ", $data - self::DELTA);
+            $select->where("{$value} < ? ", $data - self::DELTA);
         }
 
         $offset = $this->select->getConnection()
@@ -114,11 +114,11 @@ class Interval implements IntervalInterface
         }
 
         $select = clone $this->select;
-        $select->where("${value} >= ?", $data - self::DELTA);
+        $select->where("{$value} >= ?", $data - self::DELTA);
         if ($upper !== null) {
-            $select->where("${value} < ? ", $data - self::DELTA);
+            $select->where("{$value} < ? ", $data - self::DELTA);
         }
-        $select->order("${value} DESC")
+        $select->order("{$value} DESC")
             ->limit($rightIndex - $offset + 1, $offset - 1);
 
         return $this->arrayValuesToFloat(
