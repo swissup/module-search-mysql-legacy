@@ -54,6 +54,7 @@ class MySQLCatalogSearchTableCreation implements \Magento\Framework\Setup\Patch\
                 $this->indexStructure->create(Fulltext::INDEXER_ID, [], $dimension);
             }
         }
+        return $this;
     }
 
     /**

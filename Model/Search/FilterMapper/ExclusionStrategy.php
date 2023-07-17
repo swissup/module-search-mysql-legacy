@@ -114,6 +114,7 @@ class ExclusionStrategy implements FilterStrategyInterface
         } elseif ($filter->getField() === 'category_ids') {
             return $this->applyCategoryFilter($filter, $select);
         }
+        return false;
     }
 
     /**

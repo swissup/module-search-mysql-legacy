@@ -46,6 +46,11 @@ class DataProvider
     private $tableResolver;
 
     /**
+     * @var \Magento\Catalog\Model\Layer
+     */
+    private $layer;
+
+    /**
      * DataProvider constructor.
      * @param ResourceConnection $resource
      * @param ScopeResolverInterface $scopeResolver

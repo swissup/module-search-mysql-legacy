@@ -103,6 +103,7 @@ class IndexerHandler implements IndexerInterface
         foreach ($this->batch->getItems($documents, $this->batchSize) as $batchDocuments) {
             $this->insertDocuments($batchDocuments, $dimensions);
         }
+        return $this;
     }
 
     /**
@@ -114,6 +115,7 @@ class IndexerHandler implements IndexerInterface
             $this->resource->getConnection()
                 ->delete($this->getTableName($dimensions), ['entity_id in (?)' => $batchDocuments]);
         }
+        return $this;
     }
 
     /**
@@ -123,6 +125,7 @@ class IndexerHandler implements IndexerInterface
     {
         $this->indexStructure->delete($this->getIndexName(), $dimensions);
         $this->indexStructure->create($this->getIndexName(), [], $dimensions);
+        return $this;
     }
 
     /**
