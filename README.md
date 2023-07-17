@@ -34,7 +34,7 @@ cd <magento_root>
 composer config repositories.swissup composer https://docs.swissuplabs.com/packages/
 composer require swissup/module-search-mysql-legacy --prefer-source --ignore-platform-reqs
 bin/magento module:enable Swissup_SearchMysqlLegacy Swissup_Core
-bin/magento setup:upgrade
+bin/magento setup:upgrade --safe-mode=1
 bin/magento setup:di:compile
 bin/magento indexer:reindex catalogsearch_fulltext
 ```
