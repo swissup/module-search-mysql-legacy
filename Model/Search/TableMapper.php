@@ -61,11 +61,11 @@ class TableMapper
         AppResource $resource,
         StoreManagerInterface $storeManager,
         CollectionFactory $attributeCollectionFactory,
-        EavConfig $eavConfig = null,
-        ScopeConfigInterface $scopeConfig = null,
-        FilterStrategyInterface $filterStrategy = null,
-        AliasResolver $aliasResolver = null,
-        FiltersExtractor $filtersExtractor = null
+        ?EavConfig $eavConfig = null,
+        ?ScopeConfigInterface $scopeConfig = null,
+        ?FilterStrategyInterface $filterStrategy = null,
+        ?AliasResolver $aliasResolver = null,
+        ?FiltersExtractor $filtersExtractor = null
     ) {
         if (null === $filterStrategy) {
             $filterStrategy = ObjectManager::getInstance()->get(FilterStrategyInterface::class);

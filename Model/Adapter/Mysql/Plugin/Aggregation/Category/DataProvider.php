@@ -61,7 +61,7 @@ class DataProvider
         ResourceConnection $resource,
         ScopeResolverInterface $scopeResolver,
         Resolver $layerResolver,
-        TableResolver $tableResolver = null
+        ?TableResolver $tableResolver = null
     ) {
         $this->resource = $resource;
         $this->scopeResolver = $scopeResolver;

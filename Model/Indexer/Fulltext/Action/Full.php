@@ -248,8 +248,8 @@ class Full
         \Magento\Framework\Search\Request\DimensionFactory $dimensionFactory,
         \Magento\Framework\Indexer\ConfigInterface $indexerConfig,
         \Swissup\SearchMysqlLegacy\Model\Indexer\Fulltext\Action\IndexIteratorFactory $indexIteratorFactory,
-        \Magento\Framework\EntityManager\MetadataPool $metadataPool = null,
-        \Magento\CatalogSearch\Model\Indexer\Fulltext\Action\DataProvider $dataProvider = null,
+        ?\Magento\Framework\EntityManager\MetadataPool $metadataPool = null,
+        ?\Magento\CatalogSearch\Model\Indexer\Fulltext\Action\DataProvider $dataProvider = null,
         $batchSize = 500
     ) {
         $this->resource = $resource;

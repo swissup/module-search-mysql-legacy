@@ -52,7 +52,7 @@ class TermDropdownStrategy implements FilterStrategyInterface
         EavConfig $eavConfig,
         $scopeConfig,
         AliasResolver $aliasResolver,
-        SelectBuilder $selectBuilder = null
+        ?SelectBuilder $selectBuilder = null
     ) {
         $this->eavConfig = $eavConfig;
         $this->aliasResolver = $aliasResolver;

@@ -82,10 +82,10 @@ class ExclusionStrategy implements FilterStrategyInterface
         \Magento\Framework\App\ResourceConnection $resourceConnection,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         AliasResolver $aliasResolver,
-        TableResolver $tableResolver = null,
-        DimensionFactory $dimensionFactory = null,
-        IndexScopeResolverInterface $priceTableResolver = null,
-        Context $httpContext = null
+        ?TableResolver $tableResolver = null,
+        ?DimensionFactory $dimensionFactory = null,
+        ?IndexScopeResolverInterface $priceTableResolver = null,
+        ?Context $httpContext = null
     ) {
         $this->resourceConnection = $resourceConnection;
         $this->storeManager = $storeManager;

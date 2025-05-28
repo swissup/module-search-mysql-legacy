@@ -65,8 +65,8 @@ class QueryBuilder
         ResourceConnection $resource,
         ScopeResolverInterface $scopeResolver,
         CatalogInventoryConfiguration $inventoryConfig,
-        IndexScopeResolverInterface $priceTableResolver = null,
-        DimensionFactory $dimensionFactory = null
+        ?IndexScopeResolverInterface $priceTableResolver = null,
+        ?DimensionFactory $dimensionFactory = null
     ) {
         $this->resource = $resource;
         $this->scopeResolver = $scopeResolver;

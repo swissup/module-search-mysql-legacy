@@ -107,9 +107,9 @@ class Preprocessor implements PreprocessorInterface
         ResourceConnection $resource,
         TableMapper $tableMapper,
         $attributePrefix,
-        ScopeConfigInterface $scopeConfig = null,
-        AliasResolver $aliasResolver = null,
-        Session $customerSession = null
+        ?ScopeConfigInterface $scopeConfig = null,
+        ?AliasResolver $aliasResolver = null,
+        ?Session $customerSession = null
     ) {
         $this->conditionManager = $conditionManager;
         $this->scopeResolver = $scopeResolver;

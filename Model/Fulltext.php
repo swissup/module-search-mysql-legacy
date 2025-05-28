@@ -55,8 +55,8 @@ class Fulltext extends \Magento\Framework\Model\AbstractModel
         Registry $registry,
         QueryFactory $queryFactory,
         ScopeConfigInterface $scopeConfig,
-        AbstractResource $resource = null,
-        DbCollection $resourceCollection = null,
+        ?AbstractResource $resource = null,
+        ?DbCollection $resourceCollection = null,
         array $data = []
     ) {
         $this->queryFactory = $queryFactory;

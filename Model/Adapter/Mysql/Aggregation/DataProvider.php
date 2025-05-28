@@ -68,8 +68,8 @@ class DataProvider implements DataProviderInterface
         ResourceConnection $resource,
         ScopeResolverInterface $scopeResolver,
         $customerSession,
-        SelectBuilderForAttribute $selectBuilderForAttribute = null,
-        Manager $eventManager = null
+        ?SelectBuilderForAttribute $selectBuilderForAttribute = null,
+        ?Manager $eventManager = null
     ) {
         $this->eavConfig = $eavConfig;
         $this->connection = $resource->getConnection();

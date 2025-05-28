@@ -90,9 +90,9 @@ class DataProvider implements DataProviderInterface
         Session $customerSession,
         MysqlDataProviderInterface $dataProvider,
         IntervalFactory $intervalFactory,
-        StoreManager $storeManager = null,
-        IndexScopeResolverInterface $priceTableResolver = null,
-        DimensionFactory $dimensionFactory = null
+        ?StoreManager $storeManager = null,
+        ?IndexScopeResolverInterface $priceTableResolver = null,
+        ?DimensionFactory $dimensionFactory = null
     ) {
         $this->resource = $resource;
         $this->connection = $resource->getConnection();

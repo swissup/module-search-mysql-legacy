@@ -77,10 +77,10 @@ class IndexBuilder implements IndexBuilderInterface
         IndexScopeResolver $scopeResolver,
         TableMapper $tableMapper,
         ScopeResolverInterface $dimensionScopeResolver,
-        DimensionsProcessor $dimensionsProcessor = null,
-        SelectContainerBuilder $selectContainerBuilder = null,
-        BaseSelectStrategyMapper $baseSelectStrategyMapper = null,
-        FilterMapper $filterMapper = null
+        ?DimensionsProcessor $dimensionsProcessor = null,
+        ?SelectContainerBuilder $selectContainerBuilder = null,
+        ?BaseSelectStrategyMapper $baseSelectStrategyMapper = null,
+        ?FilterMapper $filterMapper = null
     ) {
         $this->dimensionsProcessor = $dimensionsProcessor ?: ObjectManager::getInstance()
             ->get(DimensionsProcessor::class);
