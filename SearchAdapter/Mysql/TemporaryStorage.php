@@ -117,8 +117,8 @@ class TemporaryStorage
         $clonedSelect = clone $select;
 
         // Remove LIMIT to store all IDs
-        $clonedSelect->reset(\Zend_Db_Select::LIMIT_COUNT);
-        $clonedSelect->reset(\Zend_Db_Select::LIMIT_OFFSET);
+        $clonedSelect->reset(\Magento\Framework\DB\Select::LIMIT_COUNT);
+        $clonedSelect->reset(\Magento\Framework\DB\Select::LIMIT_OFFSET);
 
         $table = $this->createTemporaryTable();
         $this->getConnection()->query(
