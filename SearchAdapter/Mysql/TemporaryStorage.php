@@ -113,8 +113,17 @@ class TemporaryStorage
      */
     public function storeDocumentsFromSelect(Select $select)
     {
+        // Clone the select object to avoid unexpected side effects
+        $clonedSelect = clone $select;
+
+        // Remove LIMIT to store all IDs
+        $clonedSelect->reset(\Zend_Db_Select::LIMIT_COUNT);
+        $clonedSelect->reset(\Zend_Db_Select::LIMIT_OFFSET);
+
         $table = $this->createTemporaryTable();
-        $this->getConnection()->query($this->getConnection()->insertFromSelect($select, $table->getName()));
+        $this->getConnection()->query(
+            $this->getConnection()->insertFromSelect($clonedSelect, $table->getName())
+        );
         return $table;
     }
 
