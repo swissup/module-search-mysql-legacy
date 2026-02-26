@@ -77,7 +77,7 @@ class MatchBuilder implements QueryInterface
         Fulltext $fulltextHelper,
         $fulltextSearchMode = Fulltext::FULLTEXT_MODE_BOOLEAN,
         array $preprocessors = [],
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig = null
+        ?\Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig = null
     ) {
         $this->resolver = $resolver;
         $this->replaceSymbols = str_split(self::SPECIAL_CHARACTERS, 1);
