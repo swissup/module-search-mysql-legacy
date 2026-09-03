@@ -73,6 +73,29 @@ You can change your current search engine using:
 bin/magento config:set catalog/search/engine 'lmysql'
 ```
 
+#### `setup:upgrade` fails with "Current version of RDBMS is not supported"
+
+This is a Magento core check, not an extension issue. `Magento\Framework\Setup\Declaration\Schema\Db\MySQL\SqlVersionProvider`
+only accepts the DB versions listed in `app/etc/di.xml`. In Magento 2.4.8 those are:
+
+| Engine | Accepted versions |
+|--------|-------------------|
+| MySQL | `5.7.x`, `8.0.x`, `8.4.x` |
+| MariaDB | `10.2.x`–`10.6.x`, `11.4.x` |
+
+**Everything else is rejected — including MariaDB 10.7–10.11, 11.0–11.3 and 11.5+.** This is a real gap: core still
+tolerates the legacy 10.2–10.6 range, but never 10.11 — so a hosting-side "minor" upgrade from
+10.6 to 10.11 breaks `setup:upgrade` while the site itself keeps running. Adobe's supported
+database for 2.4.8 is **MariaDB 11.4 LTS** or **MySQL 8.4 LTS**.
+
+Move the database to a supported version (11.4 LTS), or roll it back to the version that worked.
+Do not "fix" this by adding a pattern for your version to `di.xml`: `getMariaDbSuffixKey()` has no
+branch for those releases, so it falls back to its 10.6 profile and declarative schema then emits
+DDL against the wrong engine profile.
+
+This extension itself has no DB-version logic and imposes no database requirement of its own beyond
+Magento's — its search and layered-navigation SQL runs unchanged on 10.6, 10.11 and 11.4.
+
 ### Configuration
 
 #### Multi-word Search Logic
