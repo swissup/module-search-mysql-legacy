@@ -88,10 +88,29 @@ tolerates the legacy 10.2–10.6 range, but never 10.11 — so a hosting-side "m
 10.6 to 10.11 breaks `setup:upgrade` while the site itself keeps running. Adobe's supported
 database for 2.4.8 is **MariaDB 11.4 LTS** or **MySQL 8.4 LTS**.
 
+The check runs only in `Setup\Declaration\Schema\*`, so it aborts `setup:upgrade` and other schema
+commands — it never touches storefront rendering. If pages break too, that is the half-applied
+upgrade the aborted command left behind, not the database version itself.
+
 Move the database to a supported version (11.4 LTS), or roll it back to the version that worked.
-Do not "fix" this by adding a pattern for your version to `di.xml`: `getMariaDbSuffixKey()` has no
-branch for those releases, so it falls back to its 10.6 profile and declarative schema then emits
-DDL against the wrong engine profile.
+
+**Do not "fix" this by adding your version to the pattern list in `di.xml`.** It unblocks the
+command, but `SqlVersionProvider::getSqlVersion()` then returns your version prefix (e.g. `10.11.`)
+and two places in core have no entry for it:
+
+- `Dto\Factories\Table` keys its `$defaultCharset` / `$defaultCollation` maps on that string, with
+  entries for `10.4.`, `10.6.` and `11.4.` only. An unknown key falls through to `default`, so every
+  table and column that declarative schema creates from then on gets **`utf8` (utf8mb3) /
+  `utf8_general_ci`** instead of `utf8mb4` — silently diverging from the rest of your schema.
+- `DbSchemaWriter::isNeedToSplitSql()` matches the same three strings, so it returns `false` and
+  stops splitting multi-operation `ALTER TABLE` statements, which is behaviour MariaDB needs.
+
+If the patch is already in place, check what it produced before removing it:
+
+```sql
+SELECT TABLE_NAME, TABLE_COLLATION FROM information_schema.TABLES
+WHERE TABLE_SCHEMA = DATABASE() AND TABLE_COLLATION NOT LIKE 'utf8mb4%';
+```
 
 This extension itself has no DB-version logic and imposes no database requirement of its own beyond
 Magento's — its search and layered-navigation SQL runs unchanged on 10.6, 10.11 and 11.4.
