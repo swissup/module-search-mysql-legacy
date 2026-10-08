@@ -179,15 +179,11 @@ class MatchBuilder implements QueryInterface
 
         $stringPrefix = $this->getStringPrefix($conditionType);
 
-        $queryValues = explode(' ', $queryValue);
+        $queryValues = preg_split('/\s+/', $queryValue, -1, PREG_SPLIT_NO_EMPTY);
 
         foreach ($queryValues as $queryKey => $queryValue) {
-            if (empty($queryValue)) {
-                unset($queryValues[$queryKey]);
-            } else {
-                $stringSuffix = self::MINIMAL_CHARACTER_LENGTH > strlen($queryValue) ? '' : '*';
-                $queryValues[$queryKey] = $stringPrefix . $queryValue . $stringSuffix;
-            }
+            $stringSuffix = self::MINIMAL_CHARACTER_LENGTH > strlen($queryValue) ? '' : '*';
+            $queryValues[$queryKey] = $stringPrefix . $queryValue . $stringSuffix;
         }
 
         $queryValue = implode(' ', $queryValues);
