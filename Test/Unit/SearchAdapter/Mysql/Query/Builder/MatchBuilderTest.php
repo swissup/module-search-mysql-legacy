@@ -13,11 +13,11 @@ use Swissup\SearchMysqlLegacy\SearchAdapter\Mysql\Query\Builder\MatchBuilder;
 
 class MatchBuilderTest extends TestCase
 {
-    private function prepare(string $value, string $conditionType, string $mode = 'or'): string
+    private function prepare(string $value, string $conditionType, string $mode = 'or', ?string $maxLength = null): string
     {
         $scopeConfig = $this->createMock(ScopeConfigInterface::class);
         $scopeConfig->method('getValue')->willReturnCallback(
-            fn () => $mode
+            fn (string $path) => $path === 'catalog/search/max_query_length' ? $maxLength : $mode
         );
         $builder = new MatchBuilder(
             $this->createMock(ResolverInterface::class),
@@ -55,5 +55,32 @@ class MatchBuilderTest extends TestCase
             'bag* a* b* c*',
             $this->prepare('"bag" +a -b ~c', BoolExpression::QUERY_CONDITION_SHOULD)
         );
+    }
+
+    public static function limitProvider(): array
+    {
+        return [
+            'default length cut to 128' => [str_repeat('a', 500), null, 129],
+            'configured length' => [str_repeat('a', 500), '10', 11],
+            'length not configured numeric' => [str_repeat('a', 500), 'x', 129],
+        ];
+    }
+
+    #[DataProvider('limitProvider')]
+    public function testQueryLengthIsLimited(string $input, ?string $maxLength, int $expectedLength): void
+    {
+        $result = $this->prepare($input, BoolExpression::QUERY_CONDITION_SHOULD, 'or', $maxLength);
+        $this->assertSame($expectedLength, strlen($result));
+    }
+
+    public function testWordCountIsLimited(): void
+    {
+        $result = $this->prepare(
+            implode(' ', array_fill(0, 500, 'a')),
+            BoolExpression::QUERY_CONDITION_SHOULD,
+            'or',
+            '100000'
+        );
+        $this->assertSame(MatchBuilder::MAX_QUERY_WORDS, count(explode(' ', $result)));
     }
 }
