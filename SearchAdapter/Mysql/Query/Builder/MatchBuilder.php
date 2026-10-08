@@ -34,6 +34,16 @@ class MatchBuilder implements QueryInterface
     const MINIMAL_CHARACTER_LENGTH = 1;
 
     /**
+     * Fallback for catalog/search/max_query_length (the core default)
+     */
+    const DEFAULT_MAX_QUERY_LENGTH = 128;
+
+    /**
+     * Max number of words in the fulltext expression (after synonyms are applied)
+     */
+    const MAX_QUERY_WORDS = 32;
+
+    /**
      * @var string[]
      */
     private $replaceSymbols = [];
@@ -164,6 +174,23 @@ class MatchBuilder implements QueryInterface
     }
 
     /**
+     * Get max length of the search text.
+     *
+     * GraphQL passes the search text to the adapter as is, so the limit is enforced here too.
+     *
+     * @return int
+     */
+    private function getMaxQueryLength(): int
+    {
+        $length = (int) $this->scopeConfig->getValue(
+            'catalog/search/max_query_length',
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+        );
+
+        return $length > 0 ? $length : self::DEFAULT_MAX_QUERY_LENGTH;
+    }
+
+    /**
      * Prepare query value for build function.
      *
      * @param string $queryValue
@@ -172,6 +199,7 @@ class MatchBuilder implements QueryInterface
      */
     protected function prepareQuery($queryValue, $conditionType)
     {
+        $queryValue = mb_substr((string) $queryValue, 0, $this->getMaxQueryLength());
         $queryValue = str_replace($this->replaceSymbols, ' ', $queryValue);
         foreach ($this->preprocessors as $preprocessor) {
             $queryValue = $preprocessor->process($queryValue);
@@ -179,15 +207,12 @@ class MatchBuilder implements QueryInterface
 
         $stringPrefix = $this->getStringPrefix($conditionType);
 
-        $queryValues = explode(' ', $queryValue);
+        $queryValues = preg_split('/\s+/', $queryValue, -1, PREG_SPLIT_NO_EMPTY);
+        $queryValues = array_slice($queryValues, 0, self::MAX_QUERY_WORDS);
 
         foreach ($queryValues as $queryKey => $queryValue) {
-            if (empty($queryValue)) {
-                unset($queryValues[$queryKey]);
-            } else {
-                $stringSuffix = self::MINIMAL_CHARACTER_LENGTH > strlen($queryValue) ? '' : '*';
-                $queryValues[$queryKey] = $stringPrefix . $queryValue . $stringSuffix;
-            }
+            $stringSuffix = self::MINIMAL_CHARACTER_LENGTH > strlen($queryValue) ? '' : '*';
+            $queryValues[$queryKey] = $stringPrefix . $queryValue . $stringSuffix;
         }
 
         $queryValue = implode(' ', $queryValues);
