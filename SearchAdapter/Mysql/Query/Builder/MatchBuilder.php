@@ -207,7 +207,8 @@ class MatchBuilder implements QueryInterface
 
         $stringPrefix = $this->getStringPrefix($conditionType);
 
-        $queryValues = array_slice(preg_split('/\s+/', $queryValue, -1, PREG_SPLIT_NO_EMPTY), 0, self::MAX_QUERY_WORDS);
+        $queryValues = preg_split('/\s+/', $queryValue, -1, PREG_SPLIT_NO_EMPTY);
+        $queryValues = array_slice($queryValues, 0, self::MAX_QUERY_WORDS);
 
         foreach ($queryValues as $queryKey => $queryValue) {
             $stringSuffix = self::MINIMAL_CHARACTER_LENGTH > strlen($queryValue) ? '' : '*';
